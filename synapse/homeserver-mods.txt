@@ -1,0 +1,22 @@
+###### Added by Matrix-Compose Script #####
+app_service_config_files:
+  - /app_services/slack-registration.yaml
+  - /app_services/discord-registration.yaml
+  - /app_services/facebook-registration.yaml 
+  - /app_services/instagram-registration.yaml
+  - /app_services/telegram-registration.yaml
+  - /app_services/whatsapp-registration.yaml
+  - /app_services/gchat-registration.yaml
+  - /app_services/linkedin-registration.yaml
+  - /app_services/twitter-registration.yaml
+  - /app_services/sms-registration.yaml
+  - /app_services/signal-registration.yaml
+  #- /app_services/imessage-registration.yaml
+  - /app_services/irc-registration.yaml
+
+modules:
+    - module: shared_secret_authenticator.SharedSecretAuthProvider
+      config:
+          shared_secret: "longsharedsecret_to_be_replaced"
+          m_login_password_support_enabled: true
+          com_devture_shared_secret_auth_support_enabled: false

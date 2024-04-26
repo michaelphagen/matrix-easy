@@ -1,0 +1,112 @@
+version: "3.4"
+services:
+  synapse:
+    hostname: synapse
+    container_name: synapse
+    ports:
+      - 8008:8008
+      - 8448:8448
+    image: matrixdotorg/synapse:latest
+    restart: unless-stopped
+    volumes:
+     - ./synapse:/data
+     - ./bridges/slack/registration.yaml:/app_services/slack-registration.yaml
+     - ./bridges/discord/registration.yaml:/app_services/discord-registration.yaml
+     - ./bridges/messenger/registration.yaml:/app_services/facebook-registration.yaml
+     - ./bridges/instagram/registration.yaml:/app_services/instagram-registration.yaml
+     - ./bridges/telegram/registration.yaml:/app_services/telegram-registration.yaml
+     - ./bridges/gchat/registration.yaml:/app_services/gchat-registration.yaml
+     - ./bridges/whatsapp/registration.yaml:/app_services/whatsapp-registration.yaml
+     - ./bridges/linkedin/registration.yaml:/app_services/linkedin-registration.yaml
+     - ./bridges/twitter/registration.yaml:/app_services/twitter-registration.yaml
+     - ./bridges/sms/registration.yaml:/app_services/sms-registration.yaml
+     - ./bridges/signal/registration.yaml:/app_services/signal-registration.yaml
+     #- ./bridges/imessage/registration.yaml:/app_services/imessage-registration.yaml
+     - ./bridges/irc/data/heisenbridge.yaml:/app_services/irc-registration.yaml
+     - ./shared_secret_authenticator.py:/usr/local/lib/python3.11/site-packages/shared_secret_authenticator.py
+  
+  bridge-instagram:
+    container_name: bridge-instagram
+    image: dock.mau.dev/mautrix/meta:latest
+    restart: unless-stopped
+    volumes:
+      - ./bridges/instagram:/data
+
+  bridge-slack:
+    container_name: bridge-slack
+    image: dock.mau.dev/mautrix/slack:latest
+    restart: unless-stopped
+    volumes:
+      - ./bridges/slack:/data
+  
+  bridge-discord:
+    container_name: bridge-discord
+    image: dock.mau.dev/mautrix/discord:latest
+    restart: unless-stopped
+    volumes:
+      - ./bridges/discord:/data
+  
+  bridge-messenger:
+    container_name: bridge-messenger
+    image: dock.mau.dev/mautrix/meta:latest
+    restart: unless-stopped
+    volumes:
+      - ./bridges/messenger:/data
+
+  bridge-telegram:
+    container_name: bridge-telegram
+    image: dock.mau.dev/mautrix/telegram:latest
+    restart: unless-stopped
+    volumes:
+      - ./bridges/telegram:/data
+  
+  bridge-whatsapp:
+    container_name: bridge-whatsapp
+    image: dock.mau.dev/mautrix/whatsapp:latest
+    restart: unless-stopped
+    volumes:
+      - ./bridges/whatsapp:/data
+  
+  bridge-gchat:
+    container_name: bridge-gchat
+    image: dock.mau.dev/mautrix/googlechat:latest
+    restart: unless-stopped
+    volumes:
+      - ./bridges/gchat:/data
+  
+  bridge-linkedin:
+    container_name: bridge-linkedin
+    image: ghcr.io/beeper/linkedin:latest
+    restart: unless-stopped
+    volumes:
+      - ./bridges/linkedin:/data
+      - ./bridges/linkedin/linkedin-matrix.log:/opt/linkedin-matrix/linkedin-matrix.log
+  
+  bridge-twitter:
+    container_name: bridge-twitter
+    image: dock.mau.dev/mautrix/twitter:latest
+    restart: unless-stopped
+    volumes:
+      - ./bridges/twitter:/data
+
+  bridge-sms:
+    container_name: bridge-sms
+    image: dock.mau.dev/mautrix/gmessages:latest
+    restart: unless-stopped
+    volumes:
+      - ./bridges/sms:/data
+
+  bridge-signal:
+    container_name: bridge-signal
+    image: dock.mau.dev/mautrix/signal:latest
+    restart: unless-stopped
+    volumes:
+      - ./bridges/signal:/data
+
+  bridge-irc:
+    container_name: bridge-irc
+    image: hif1/heisenbridge:latest
+    volumes:
+      - ./bridges/irc/heisenbridge-init.sh:/heisenbridge-init.sh:ro
+      - ./bridges/irc/data:/data
+    entrypoint: /heisenbridge-init.sh
