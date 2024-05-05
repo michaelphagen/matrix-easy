@@ -114,7 +114,13 @@ bridge:
     # Displayname template for Telegram users.
     # {displayname} is replaced with the display name of the Telegram user.
     displayname_template: '{displayname}'
-
+    # Settings for creating a space for every user.
+    space_support:
+        # Whether or not to enable creating a space per user and inviting the
+        # user (as well as all of the puppets) to that space.
+        enable: true
+        # The name of the space
+        name: "Telegram"
     # Set the preferred order of user identifiers which to use in the Matrix puppet display name.
     # In the (hopefully unlikely) scenario that none of the given keys are found, the numeric user
     # ID is used.

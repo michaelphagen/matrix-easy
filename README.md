@@ -19,7 +19,7 @@ An Automated Setup system for Matrix and Common Bridges in docker. Intended as a
   - [Telegram](https://github.com/mautrix/telegram)
   - [Twitter](https://github.com/mautrix/twitter)
   - [WhatsApp](https://github.com/mautrix/whatsapp)
-
+- Modified versions of the telegram and linkedin bridges that support spaces for easy service filtering
 
 ## Installation
 
