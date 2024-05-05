@@ -55,7 +55,7 @@ services:
 
   bridge-telegram:
     container_name: bridge-telegram
-    image: dock.mau.dev/mautrix/telegram:latest
+    image: ghcr.io/michaelphagen/telegram:master
     restart: unless-stopped
     volumes:
       - ./bridges/telegram:/data
@@ -76,7 +76,7 @@ services:
   
   bridge-linkedin:
     container_name: bridge-linkedin
-    image: ghcr.io/beeper/linkedin:latest
+    image: ghcr.io/michaelphagen/matrix-linkedin-bridge:master
     restart: unless-stopped
     volumes:
       - ./bridges/linkedin:/data
