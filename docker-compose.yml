@@ -55,7 +55,7 @@ services:
 
   bridge-telegram:
     container_name: bridge-telegram
-    image: ghcr.io/michaelphagen/telegram:master
+    image: ghcr.io/michaelphagen/matrix-telegram-bridge:master
     restart: unless-stopped
     volumes:
       - ./bridges/telegram:/data
@@ -69,7 +69,7 @@ services:
   
   bridge-gchat:
     container_name: bridge-gchat
-    image: dock.mau.dev/mautrix/googlechat:latest
+    image: ghcr.io/michaelphagen/matrix-googlechat-bridge:master
     restart: unless-stopped
     volumes:
       - ./bridges/gchat:/data
